@@ -22,7 +22,8 @@ async function write() {
             let stmt
             try {
                 console.log(xr, restaurants[r].name, restaurants[r].image)
-                stmt = db.prepare("INSERT INTO restaurant (id, name, link) VALUES (?,?,?)", xr, restaurants[r].name, restaurants[r].image);
+                stmt = db.prepare("INSERT INTO restaurant (id, name, link) VALUES (?,?,?)"
+                    , xr, restaurants[r].name, restaurants[r].image);
                 stmt.run();
             } finally {
                 stmt.finalize();
@@ -35,7 +36,8 @@ async function write() {
                     let stmt
                     try {
                         console.log(xm, restaurants[r].menus[m].title)
-                        stmt = db.prepare("INSERT INTO menu (id, title, restaurant_id) VALUES (?,?,?)", xm, restaurants[r].menus[m].title, xr);
+                        stmt = db.prepare("INSERT INTO menu (id, title, restaurant_id) VALUES (?,?,?)",
+                            xm, restaurants[r].menus[m].title, xr);
                         stmt.run();
                     } finally {
                         stmt.finalize();
@@ -49,7 +51,8 @@ async function write() {
                         let stmt
                     try {
                         console.log(restaurants[r].menus[m].items[i])
-                        stmt = db.prepare("INSERT INTO menu_item (id, name, price, menu_id) VALUES (?,?,?,?)", xi, restaurants[r].menus[m].items[i].name,
+                        stmt = db.prepare("INSERT INTO menu_item (id, name, price, menu_id) VALUES (?,?,?,?)",
+                            xi, restaurants[r].menus[m].items[i].name,
                             restaurants[r].menus[m].items[i].price, xm);
                         stmt.run();
                     } finally {
